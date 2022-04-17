@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import google from "../../../../Images/logo/google.png";
 import facebook from "../../../../Images/logo/facebook.png";
@@ -46,7 +47,7 @@ const Login = () => {
           {/* <!-- Register buttons --> */}
           <div class="text-center">
             <p>
-              Not a member? <a href="#!">Register</a>
+              Not a member? <Link to="/register">Register</Link>
             </p>
             <p>or sign up with:</p>
             <button type="button" class="btn btn-link btn-floating mx-1">
