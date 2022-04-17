@@ -12,53 +12,53 @@ const Login = () => {
         <h1 className="my-4">Login</h1>
         <form>
           {/* <!-- Email input --> */}
-          <div class="form-outline mb-4">
+          <div className="form-outline mb-4">
             <input
               type="email"
               id="form2Example1"
-              class="form-control"
+              className="form-control"
               placeholder="Enter your Email"
             />
           </div>
 
           {/* <!-- Password input --> */}
-          <div class="form-outline mb-4">
+          <div className="form-outline mb-4">
             <input
               type="password"
               id="form2Example2"
-              class="form-control"
+              className="form-control"
               placeholder="Enter Password"
             />
           </div>
 
           {/* <!-- 2 column grid layout for inline styling --> */}
-          <div class="row mb-4">
-            <div class="col">
+          <div className="row mb-4">
+            <div className="col">
               {/* <!-- Simple link --> */}
               <a href="#!">Forgot password?</a>
             </div>
           </div>
 
           {/* <!-- Submit button --> */}
-          <button type="button" class="btn btn-primary btn-block mb-4">
+          <button type="button" className="btn btn-primary btn-block mb-4">
             Sign in
           </button>
 
           {/* <!-- Register buttons --> */}
-          <div class="text-center">
+          <div className="text-center">
             <p>
               Not a member? <Link to="/register">Register</Link>
             </p>
             <p>or sign up with:</p>
-            <button type="button" class="btn btn-link btn-floating mx-1">
+            <button type="button" className="btn btn-link btn-floating mx-1">
               <img style={{ width: "30px" }} src={google} alt="" />
             </button>
 
-            <button type="button" class="btn btn-link btn-floating mx-1">
+            <button type="button" className="btn btn-link btn-floating mx-1">
               <img style={{ width: "30px" }} src={facebook} alt="" />
             </button>
 
-            <button type="button" class="btn btn-link btn-floating mx-1">
+            <button type="button" className="btn btn-link btn-floating mx-1">
               <img style={{ width: "30px" }} src={github} alt="" />
             </button>
           </div>
