@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "services": "Dental Surgeries",
+    "price": "3000",
+    "discription": "Here is perfect dental surgeries is offer at low cost",
+    "imgUrl": "https://img.freepik.com/free-photo/beautiful-girl-sitting-dentist-s-office_1157-21014.jpg?size=626&ext=jpg"
+  },
+  {
+    "id": 2,
+    "services": "Laser Treatments",
+    "price": "5000",
+    "discription": "It is paneless fast and risk free .",
+    "imgUrl": "https://img.freepik.com/free-photo/woman-patient-dentist_1303-9355.jpg?w=740&t=st=1650201211~exp=1650201811~hmac=eee04a421845e3b39fb07af68fbbb19b66903f6bd72d566f3a18ea39d551e8da"
+  },
+  {
+    "id": 3,
+    "services": "Root Canel",
+    "price": "3500",
+    "discription": "Here perfectly root canel is offer.",
+    "imgUrl": "http://demo.joomlabuff.com/dentalcare/images/joomlabuff/services/1.jpg"
+  },
+  {
+    "id": 4,
+    "services": "Dental inplant",
+    "price": "2000",
+    "discription": " Inplant your tooth . stay happy",
+    "imgUrl": "http://demo.joomlabuff.com/dentalcare/images/joomlabuff/services/3.jpg"
+  }
+]
