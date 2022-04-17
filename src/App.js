@@ -5,6 +5,7 @@ import Login from "./Components/Pages/Authentication/Login/Login";
 import Register from "./Components/Pages/Authentication/Register/Register";
 import Blog from "./Components/Pages/Blog/Blog";
 import Home from "./Components/Pages/Home/Home";
+import Notfound from "./Components/Pages/NotFound/Notfound";
 import Footer from "./Components/shared/Footer/Footer";
 import TopNavbar from "./Components/shared/Header/TopNavbar/TopNavbar";
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="aboutMe" element={<AboutMe></AboutMe>}></Route>
         <Route path="login" element={<Login></Login>}></Route>
         <Route path="register" element={<Register></Register>}></Route>
+        <Route path="*" element={<Notfound></Notfound>}></Route>
         {/* <Route path="home#services" element={<AboutMe></AboutMe>}></Route> */}
       </Routes>
       <Footer />
