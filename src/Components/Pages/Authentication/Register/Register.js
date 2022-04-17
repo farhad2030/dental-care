@@ -5,11 +5,19 @@ import facebook from "../../../../Images/logo/facebook.png";
 import github from "../../../../Images/logo/github.png";
 
 const Register = () => {
+  const handelRegister = (event) => {
+    event.preventDefault();
+
+    var name = event.target.name.value;
+    var email = event.target.email.value;
+    var password = event.target.password.value;
+  };
+
   return (
     <div>
       <div className="col col-md-4 mx-auto border p-3 my-3 rounded">
         <h1 className="my-4">Register</h1>
-        <form>
+        <form onSubmit={handelRegister}>
           {/* <!-- name input --> */}
           <div class="form-outline mb-4">
             <input
@@ -17,7 +25,7 @@ const Register = () => {
               id="name"
               name="naem"
               class="form-control"
-              placeholder="Enter your Email"
+              placeholder="Enter your Name"
             />
           </div>
           {/* <!-- Email input --> */}
@@ -41,7 +49,7 @@ const Register = () => {
           </div>
 
           {/* <!-- Submit button --> */}
-          <button type="button" class="btn btn-primary btn-block mb-4">
+          <button type="submit" class="btn btn-primary btn-block mb-4">
             Register
           </button>
 
