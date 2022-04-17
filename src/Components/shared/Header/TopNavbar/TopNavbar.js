@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-
+import {Link} from "react-router-dom"
 const TopNavbar = () => {
   return (
     <div>
@@ -15,7 +15,9 @@ const TopNavbar = () => {
           <Nav.Link eventKey="link-1">Link</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-2">Link</Nav.Link>
+          <Nav.Link as={Link} to="Login">
+            Login
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link eventKey="disabled" disabled>
