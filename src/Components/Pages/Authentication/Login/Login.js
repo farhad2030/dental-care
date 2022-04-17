@@ -1,21 +1,31 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 
 import google from "../../../../Images/logo/google.png";
 import facebook from "../../../../Images/logo/facebook.png";
 import github from "../../../../Images/logo/github.png";
 
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import auth from "../../../../firebase.init";
 
 const Login = () => {
+  // react-firebase-hook
   const [signInWithEmailAndPassword, EmailUser, EmailLoading, EmailError] =
     useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending, Reseterror] =
+    useSendPasswordResetEmail(auth);
 
   var errorElement;
 
-  if (EmailError) {
-    errorElement = <p className="text-danger">{EmailError.message};</p>;
+  if (EmailError || Reseterror) {
+    errorElement = (
+      <p className="text-danger">
+        {EmailError?.message || Reseterror?.message};
+      </p>
+    );
   }
   const handelLogin = (event) => {
     event.preventDefault();
@@ -24,6 +34,10 @@ const Login = () => {
     var password = event.target.password.value;
 
     signInWithEmailAndPassword(email, password);
+  };
+  const emailRef = useRef("");
+  const forgetPassword = () => {
+    sendPasswordResetEmail(emailRef.current.value);
   };
   return (
     <div>
@@ -34,6 +48,7 @@ const Login = () => {
           {/* <!-- Email input --> */}
           <div className="form-outline mb-4">
             <input
+              ref={emailRef}
               type="email"
               name="email"
               className="form-control"
@@ -55,7 +70,9 @@ const Login = () => {
           <div className="row mb-4">
             <div className="col">
               {/* <!-- Simple link --> */}
-              <a href="#!">Forgot password?</a>
+              <a href="#!" onClick={forgetPassword}>
+                Forgot password?
+              </a>
             </div>
           </div>
 

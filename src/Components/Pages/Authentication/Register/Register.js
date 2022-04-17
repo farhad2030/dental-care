@@ -11,6 +11,7 @@ import google from "../../../../Images/logo/google.png";
 import facebook from "../../../../Images/logo/facebook.png";
 import github from "../../../../Images/logo/github.png";
 import { async } from "@firebase/util";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [
@@ -41,8 +42,7 @@ const Register = () => {
   const handelGoogleSignin = () => {
     signInWithGoogle();
   };
-  console.log(GoogleProvideruser);
-  console.log(EmailProvideruser);
+  
   if (GoogleProviderError || EmailProvidererror) {
     errorElement = (
       <p className="text-danger">
@@ -96,6 +96,9 @@ const Register = () => {
 
           {/* <!-- Register buttons --> */}
           <div className="text-center">
+            <p>
+              Have an account ? <Link to="/login">Login</Link>
+            </p>
             <p>or sign up with:</p>
             <button
               type="button"
