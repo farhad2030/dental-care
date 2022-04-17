@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   useSignInWithGoogle,
   useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 
 import auth from "../../../../firebase.init";
@@ -9,23 +10,32 @@ import auth from "../../../../firebase.init";
 import google from "../../../../Images/logo/google.png";
 import facebook from "../../../../Images/logo/facebook.png";
 import github from "../../../../Images/logo/github.png";
+import { async } from "@firebase/util";
 
 const Register = () => {
-  const [error, setError] = useState("");
-  const [signInWithGoogle, GoogleProvideruser, GoogleProviderError] =
-    useSignInWithGoogle(auth);
+  const [
+    signInWithGoogle,
+    GoogleProvideruser,
+    GoogleProviderLoding,
+    GoogleProviderError,
+  ] = useSignInWithGoogle(auth);
   const [
     createUserWithEmailAndPassword,
     EmailProvideruser,
     EmailProvidererror,
   ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-  const handelRegister = (event) => {
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+  let errorElement;
+
+  const handelRegister = async (event) => {
     event.preventDefault();
 
     var name = event.target.name.value;
     var email = event.target.email.value;
     var password = event.target.password.value;
-    createUserWithEmailAndPassword(email, password);
+    await createUserWithEmailAndPassword(email, password);
+    await updateProfile({ displayName: name });
   };
 
   const handelGoogleSignin = () => {
@@ -33,16 +43,23 @@ const Register = () => {
   };
   console.log(GoogleProvideruser);
   console.log(EmailProvideruser);
-
+  if (GoogleProviderError || EmailProvidererror) {
+    errorElement = (
+      <p className="text-danger">
+        {GoogleProviderError?.message || EmailProvidererror.message}
+      </p>
+    );
+  }
   return (
     <div>
       <div className="col col-md-4 mx-auto border p-3 my-3 rounded">
         <h1 className="my-4">Register</h1>
-        <p className="text-denger">{error}</p>
+        {errorElement}
         <form onSubmit={handelRegister}>
           {/* <!-- name input --> */}
           <div className="form-outline mb-4">
             <input
+              required
               type="text"
               id="name"
               name="naem"
@@ -53,6 +70,7 @@ const Register = () => {
           {/* <!-- Email input --> */}
           <div className="form-outline mb-4">
             <input
+              required
               type="email"
               name="email"
               className="form-control"
@@ -63,6 +81,7 @@ const Register = () => {
           {/* <!-- Password input --> */}
           <div className="form-outline mb-4">
             <input
+              required
               type="password"
               name="password"
               className="form-control"
