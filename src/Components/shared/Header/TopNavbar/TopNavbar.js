@@ -8,13 +8,13 @@ const TopNavbar = () => {
   const [user, loading, error] = useAuthState(auth);
 
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div class="container-fluid">
-        <Link class="navbar-brand" to="/">
+    <nav className=" fixed-top navbar navbar-expand-lg navbar-dark bg-primary">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">
           Dental-Care
         </Link>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNavDropdown"
@@ -22,32 +22,40 @@ const TopNavbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse " id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <Link class="nav-link " aria-current="page" to="/home#services">
+        <div className="collapse navbar-collapse " id="navbarNavDropdown">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link
+                className="nav-link "
+                aria-current="page"
+                to="/home#services"
+              >
                 services
               </Link>
             </li>
-            <li class="nav-item">
-              <Link class="nav-link " aria-current="page" to="/blog">
+            <li className="nav-item">
+              <Link className="nav-link" to="blog">
                 Blog
               </Link>
             </li>
-            <li class="nav-item">
-              <Link class="nav-link" to="aboutMe">
+            <li className="nav-item">
+              <Link className="nav-link" to="aboutMe">
                 About Me
               </Link>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               {user ? (
-                <Link class="nav-link" to="#!" onClick={() => signOut(auth)}>
+                <Link
+                  className="nav-link"
+                  to="#!"
+                  onClick={() => signOut(auth)}
+                >
                   Signout
                 </Link>
               ) : (
-                <Link class="nav-link" to="/login">
+                <Link className="nav-link" to="/login">
                   Login
                 </Link>
               )}

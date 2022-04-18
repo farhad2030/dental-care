@@ -112,14 +112,7 @@ const Register = () => {
               onClick={handelGoogleSignin}
             >
               <img style={{ width: "30px" }} src={google} alt="" />
-            </button>
-
-            <button type="button" className="btn btn-link btn-floating mx-1">
-              <img style={{ width: "30px" }} src={facebook} alt="" />
-            </button>
-
-            <button type="button" className="btn btn-link btn-floating mx-1">
-              <img style={{ width: "30px" }} src={github} alt="" />
+              <span className="text-black ms-2"> Login With Google</span>
             </button>
           </div>
         </form>
