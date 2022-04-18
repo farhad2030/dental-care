@@ -1,15 +1,17 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 
 import google from "../../../../Images/logo/google.png";
 import facebook from "../../../../Images/logo/facebook.png";
 import github from "../../../../Images/logo/github.png";
 
 import {
+  useAuthState,
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase.init";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   // react-firebase-hook
@@ -17,8 +19,13 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   const [sendPasswordResetEmail, sending, Reseterror] =
     useSendPasswordResetEmail(auth);
+  const [user, loading, error] = useAuthState(auth);
 
   var errorElement;
+
+  let location = useLocation();
+  let navigate = useNavigate();
+  let from = location.state?.from?.pathname || "/";
 
   if (EmailError || Reseterror) {
     errorElement = (
@@ -26,6 +33,9 @@ const Login = () => {
         {EmailError?.message || Reseterror?.message};
       </p>
     );
+  }
+  if (user) {
+    navigate(from, { replace: true });
   }
   const handelLogin = (event) => {
     event.preventDefault();
@@ -37,10 +47,16 @@ const Login = () => {
   };
   const emailRef = useRef("");
   const forgetPassword = () => {
-    sendPasswordResetEmail(emailRef.current.value);
+    if (emailRef.current.value) {
+      sendPasswordResetEmail(emailRef.current.value);
+      toast.success("Reset password Link send to the email");
+    } else {
+      toast.warn("Enter your Email");
+    }
   };
   return (
     <div>
+      <ToastContainer />
       <div className="col col-md-4 mx-auto border p-3 my-3 rounded">
         <h1 className="my-4">Login</h1>
         {errorElement}

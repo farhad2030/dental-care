@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const [services, setServices] = useState([]);
@@ -24,7 +25,9 @@ const Services = () => {
                     <Card.Title>{service.services}</Card.Title>
                     <Card.Text>{service.discription}</Card.Text>
                     <Card.Text> BDT - {service.price} Only</Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Link to="/checkout">
+                      <Button variant="primary">Checkout</Button>
+                    </Link>
                   </Card.Body>
                 </Card>
               </Col>
