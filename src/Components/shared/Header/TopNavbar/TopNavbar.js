@@ -10,7 +10,7 @@ const TopNavbar = () => {
   return (
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container-fluid">
-        <Link class="navbar-brand" to="#">
+        <Link class="navbar-brand" to="/">
           Dental-Care
         </Link>
         <button
