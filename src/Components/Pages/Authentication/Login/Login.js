@@ -9,34 +9,55 @@ import {
   useAuthState,
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase.init";
 import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   // react-firebase-hook
-  const [signInWithEmailAndPassword, EmailUser, EmailLoading, EmailError] =
-    useSignInWithEmailAndPassword(auth);
+  const [
+    signInWithEmailAndPassword,
+    EmailUser,
+    EmailLoading,
+    EmailProvidererror,
+  ] = useSignInWithEmailAndPassword(auth);
   const [sendPasswordResetEmail, sending, Reseterror] =
     useSendPasswordResetEmail(auth);
   const [user, loading, error] = useAuthState(auth);
 
   var errorElement;
 
+  const [
+    signInWithGoogle,
+    GoogleProvideruser,
+    GoogleProviderLoding,
+    GoogleProviderError,
+  ] = useSignInWithGoogle(auth);
+
   let location = useLocation();
   let navigate = useNavigate();
   let from = location.state?.from?.pathname || "/";
 
-  if (EmailError || Reseterror) {
+  if (EmailProvidererror || Reseterror) {
     errorElement = (
       <p className="text-danger">
-        {EmailError?.message || Reseterror?.message};
+        {EmailProvidererror?.message || Reseterror?.message};
       </p>
     );
   }
   if (user) {
     navigate(from, { replace: true });
   }
+
+  if (GoogleProviderError || EmailProvidererror) {
+    errorElement = (
+      <p className="text-danger">
+        {GoogleProviderError?.message || EmailProvidererror.message}
+      </p>
+    );
+  }
+
   const handelLogin = (event) => {
     event.preventDefault();
 
@@ -45,6 +66,7 @@ const Login = () => {
 
     signInWithEmailAndPassword(email, password);
   };
+
   const emailRef = useRef("");
   const forgetPassword = () => {
     if (emailRef.current.value) {
@@ -103,7 +125,11 @@ const Login = () => {
               Not a member? <Link to="/register">Register</Link>
             </p>
             <p>or sign up with:</p>
-            <button type="button" className="btn btn-link btn-floating mx-1">
+            <button
+              type="button"
+              onClick={() => signInWithGoogle()}
+              className="btn btn-link btn-floating mx-1"
+            >
               <img style={{ width: "30px" }} src={google} alt="" />
             </button>
 
