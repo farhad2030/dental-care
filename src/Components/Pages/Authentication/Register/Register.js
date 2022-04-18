@@ -11,7 +11,8 @@ import google from "../../../../Images/logo/google.png";
 import facebook from "../../../../Images/logo/facebook.png";
 import github from "../../../../Images/logo/github.png";
 import { async } from "@firebase/util";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const Register = () => {
   const [
@@ -29,6 +30,8 @@ const Register = () => {
 
   let errorElement;
 
+  var navigate = useNavigate();
+
   const handelRegister = async (event) => {
     event.preventDefault();
 
@@ -37,12 +40,14 @@ const Register = () => {
     var password = event.target.password.value;
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
+    navigate("/home", { state: "A verification link is sent" });
+    // toast.info("A verification link is sent");
   };
 
   const handelGoogleSignin = () => {
     signInWithGoogle();
   };
-  
+
   if (GoogleProviderError || EmailProvidererror) {
     errorElement = (
       <p className="text-danger">
@@ -52,6 +57,7 @@ const Register = () => {
   }
   return (
     <div>
+      <ToastContainer />
       <div className="col col-md-4 mx-auto border p-3 my-3 rounded">
         <h1 className="my-4">Register</h1>
         {errorElement}
